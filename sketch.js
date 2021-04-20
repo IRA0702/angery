@@ -1,15 +1,14 @@
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
-
+const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1;
-var backgroundImg;
-var platform;
-function preload() {
-    backgroundImg = loadImage("sprites/bg.png");
+var logtest;
+var sling;
+function preload(){
+    backgroundImage = loadImage("sprites/bg.png")
 }
-
 function setup(){
     var canvas = createCanvas(1200,400);
     engine = Engine.create();
@@ -17,7 +16,7 @@ function setup(){
 
     
     ground = new Ground(600,height,1200,20)
-    platfrom=new Ground(150,300,300,170);
+
     box1 = new Box(700,320,70,70);
     box2 = new Box(920,320,70,70);
     pig1 = new Pig(810, 350);
@@ -34,11 +33,12 @@ function setup(){
     log5 = new Log(870,120,150, -PI/7);
 
     bird = new Bird(100,100);
-
+    
+    sling=new SlingShot(bird.body,{x:200 ,y: 100 })
 }
 
 function draw(){
-    background(backgroundImg);
+    background(backgroundImage);
     Engine.update(engine);
     console.log(box2.body.position.x);
     console.log(box2.body.position.y);
@@ -48,7 +48,7 @@ function draw(){
     ground.display();
     pig1.display();
     log1.display();
-
+   
     box3.display();
     box4.display();
     pig3.display();
@@ -57,6 +57,7 @@ function draw(){
     box5.display();
     log4.display();
     log5.display();
-    platfrom.display();
+
     bird.display();
+    sling.display();
 }
